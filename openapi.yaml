@@ -1,0 +1,98 @@
+openapi: 3.0.1
+info:
+  title: Accent Switch API
+  version: 1.0.0
+  description: |
+    Accent Switch API allows users to rewrite messages in fun and diverse accents from around the world.
+    Enter your prompt in the format: "<your message> in <style>".
+
+paths:
+  /:
+    get:
+      summary: Get API instructions
+      operationId: getInstructions
+      responses:
+        '200':
+          description: Returns usage instructions and available styles
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Let's switch that accent"
+                  instructions:
+                    type: string
+                    example: "To use this API, send a POST request to /rewrite with the JSON body containing 'prompt'."
+                  example_request:
+                    type: string
+                    example: "I am heading to the store in tdot_slang"
+                  available_styles:
+                    type: array
+                    items:
+                      type: string
+                    example: [
+                      "yard_talk", "tdot_slang", "east_end_banter", "aussie_chatter",
+                      "nyc_hustle", "dublin_craic", "highland_hype", "parisian_twist",
+                      "bollywood_buzz", "yall_drawl", "mzansi_mix", "rasta_vibes",
+                      "moscow_street_talk", "tex_mex_twang", "cajun_speak", "norwegian_nordic",
+                      "berlin_beat", "tokyo_talk", "mumbai_street_style", "italian_flair",
+                      "brazilian_beat", "new_zealand_zing", "caribbean_creole", "arabian_accent",
+                      "chinese_mandarin_influence", "korean_pop_vibe", "spanish_lilt",
+                      "swahili_swag", "canadian_francophone"
+                    ]
+                  note:
+                    type: string
+                    example: "If the style is not recognized, the response will be in plain English with a notification."
+
+  /rewrite:
+    post:
+      summary: Rewrite a message in a selected accent
+      operationId: rewriteMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  description: The user input in the format "<message> in <style>".
+                  example: "I am heading to the store in tdot_slang"
+      responses:
+        '200':
+          description: Returns the rewritten message in the selected accent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rewritten_message:
+                    type: string
+                    description: The rewritten message in the chosen style
+                    example: "Yo fam, what you sayin’? I am heading to the store"
+        '400':
+          description: Invalid input format or missing message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid format. Please use: '<your message> in <style>'"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "An unexpected error occurred. Here’s your message: I am heading to the store"
+                  debug:
+                    type: string
+                    example: "Traceback or debug info if available"

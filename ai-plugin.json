@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Accent Switch",
+  "name_for_model": "accent_switch",
+  "description_for_human": "Rewrites messages in fun accents from around the world, now with 29 unique accents!",
+  "description_for_model": "This plugin rewrites user text using accents like Yard Talk (Jamaican), Tdot Slang (Toronto), East End Banter (Cockney), and more up to 29 accents.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://82bd2210-891c-4307-a4c5-be193a6192b3-00-rtm7hf0vhm0.worf.replit.dev/openapi.yaml"
+  },
+  "logo_url": "https://82bd2210-891c-4307-a4c5-be193a6192b3-00-rtm7hf0vhm0.worf.replit.dev/photo.png",
+  "contact_email": "mustansirlok@gmail.com",
+  "author_name": "Mustansir Lokhandwala",
+  "version": "1.0.0"
+}
